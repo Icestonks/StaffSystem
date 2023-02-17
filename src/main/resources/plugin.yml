@@ -1,0 +1,13 @@
+name: StaffSystem
+version: '${project.version}'
+main: dk.iskold.staffsystem.StaffSystem
+api-version: 1.8
+authors: [ iskoldcool, "Shad0wsense" ]
+description: Basic tools for stafss
+commands:
+  staff:
+    description: Sets player in staff-mode
+    aliases: [ staffmode ]
+  staffchat:
+    description: Sets player in staff-mode
+    aliases: [ sc ]
