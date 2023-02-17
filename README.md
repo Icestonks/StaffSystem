@@ -2,7 +2,7 @@ Easy to use
 
 **DEFAULT CONFIG**
 
-```
+```yml
 staffmode:
   permission: "staff"
 
