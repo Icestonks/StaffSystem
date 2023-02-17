@@ -18,15 +18,22 @@ import static dk.iskold.staffsystem.commands.Staff.staffmode_players;
 
 public class StaffSystem extends JavaPlugin {
 
-    public static Config config, data;
-    public static FileConfiguration configYML, dataYML;
+    public static Config config, data, license;
+    public static FileConfiguration configYML, dataYML, licenseYML;
     public static StaffSystem instance;
     @Override
     public void onEnable() {
         instance = this;
 
-        System.out.println("VI STARTER OP!!!!");
-        Bukkit.broadcastMessage("Staff System");
+        if (!(new File(getDataFolder(), "license.yml")).exists())
+            saveResource("license.yml", false);
+
+        license = new Config(this, null, "license.yml");
+        licenseYML = license.getConfig();
+
+        String license = licenseYML.getString("License");
+        if(!new AdvancedLicense(license, "https://license.cutekat.dk/verify.php", this).debug().register()) return;
+
 
         //config yml
         if (!(new File(getDataFolder(), "config.yml")).exists())
