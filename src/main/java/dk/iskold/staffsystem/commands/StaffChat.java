@@ -15,9 +15,9 @@ import java.util.List;
 
 public class StaffChat implements CommandExecutor {
 
-    static String permission = StaffSystem.configYML.getString("staffmode.permission");
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        String permission = StaffSystem.configYML.getString("staffmode.permission");
         String prefix = Chat.colored(StaffSystem.configYML.getString("staffchat.prefix"));
         boolean enabled = StaffSystem.configYML.getBoolean("staffchat.enabled");
         String disabledstaffmode = Chat.colored(StaffSystem.configYML.getString("staffchat.disabled-staffmode"));
@@ -29,6 +29,11 @@ public class StaffChat implements CommandExecutor {
         Player player = (Player) sender;
         if(!enabled) {
             player.sendMessage("&cDette er disabled!");
+            return true;
+        }
+
+        if(!player.hasPermission(permission)) {
+            player.sendMessage(Chat.colored("&cDette har du ikke adgang til!"));
             return true;
         }
 
@@ -54,7 +59,6 @@ public class StaffChat implements CommandExecutor {
         player.sendMessage(prefix + staff_chat_message.replace("%player%", player.getName()).replace("%message%", String.join(" ", args)));
         ArrayList<Player> allPlayers = new ArrayList<Player>(Bukkit.getOnlinePlayers());
         allPlayers.remove(player);
-
 
         for(Player player1 : allPlayers) {
             if (player1.hasPermission(permission)) {
