@@ -8,6 +8,7 @@ import dk.iskold.staffsystem.tasks.Vanish;
 import dk.iskold.staffsystem.utils.Chat;
 import dk.iskold.staffsystem.utils.GUI;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -130,8 +131,10 @@ public class Staff implements CommandExecutor {
             p.getInventory().clear();
             InventoryManager.restoreInventory(p);
             Vanish.showPlayer(p, false);
-            p.setFlying(false);
-            p.setAllowFlight(false);
+            if(p.getGameMode() != GameMode.CREATIVE) {
+                p.setFlying(false);
+                p.setAllowFlight(false);
+            }
             p.setWalkSpeed(0.2F);
             p.setFlySpeed(0.2F);
         }
