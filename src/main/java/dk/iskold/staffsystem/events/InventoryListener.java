@@ -31,6 +31,8 @@ public class InventoryListener implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
 
+        if(e.getClickedInventory() == null) return;
+
         if(staffmode_players.contains((Player) e.getWhoClicked())) {
             e.setCancelled(true);
         }
