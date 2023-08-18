@@ -1,4 +1,4 @@
-Easy to use
+Rimelig lort, og en af mine første plugins
 
 **DEFAULT CONFIG**
 
